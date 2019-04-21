@@ -1,0 +1,2 @@
+/* Implementacion del algoritmo serie para estimar el valor de PI
+con la aproximacion propuesta por los algoritmos de MonteCarlo */
