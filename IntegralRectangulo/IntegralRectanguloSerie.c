@@ -1,0 +1,1 @@
+/* Solucion Serie para la integracion numeria basada en rectangulos*/
