@@ -1,1 +1,1 @@
-/* Transformación del código PiMonteCarloPPP para el uso de las comunicaciones colavorativas*/
+/* Transformación del código PiMonteCarloPPP para el uso de las comunicaciones colaborativas*/
