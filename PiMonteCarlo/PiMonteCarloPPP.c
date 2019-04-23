@@ -10,8 +10,6 @@ bajo el entorno MPI y la aceleración del cómputo */
 
 int main(int argc, char *argv[])
 {
-    
-
     long numeroPuntos = 0;
     double x = 0.0, y =0.0, d = 0.0, divisor = 1/10000000.0, pi=0.0;// doublecp = 0.0, doublesp = 0.0;
     long cp = 0, sp = 0; /* CirclePoint SquarePoints */

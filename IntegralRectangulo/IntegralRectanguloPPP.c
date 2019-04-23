@@ -6,6 +6,7 @@
 
 #define ln4 1.38629436112
 
+//Funcion de evaluacion
 double fdX(double x)
 {
     return 1/x;

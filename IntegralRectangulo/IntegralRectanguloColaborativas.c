@@ -6,6 +6,7 @@
 
 #define ln4 1.38629436112
 
+//Funcion de evaluacion
 double fdX(double x)
 {
     return 1/x;
@@ -77,6 +78,7 @@ int main(int argc, char *argv[])
             MPI_Bcast(&dominio, 2, MPI_DOUBLE,0,MPI_COMM_WORLD);
             MPI_Bcast(&anchuraSubInterbalo, 1, MPI_DOUBLE,0,MPI_COMM_WORLD);
             
+//Tenemos en cuenta que dominio contiene el limite inferior del dominio en la posicion 0 y el limite superior del dominio en la posicion 1
             dominioReparto = (dominio[1]-dominio[0])/worldSize;
             dominio[0]=dominio[0]+(worldRank*dominioReparto);
             dominio[1]=dominio[0]+dominioReparto;
@@ -88,12 +90,9 @@ int main(int argc, char *argv[])
             
             for(i = 0; i < numeroIntervalos;i++)                
             {
-                
-                
                 alturaConsiderada = fdX(dominio[0]+i*anchuraSubInterbalo);
                 areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
-                areaAcumulada = areaAcumulada + areaSubintervalo;
-                
+                areaAcumulada = areaAcumulada + areaSubintervalo;       
             }
             printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
             

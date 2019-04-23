@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define ln4 1.38629436112
-
+//Funcion de evaluacion
 double fdX(double x)
 {
     return 1/x;
@@ -20,12 +20,6 @@ int main(int argc, char *argv[])
 int numeroIntervalos = 0, i = 0;
 double a = 0.0, b = 0.0;
 double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, alturaConsiderada=0.0;
-
-
-
-
-
-//if(!(numeroPuntos <= 1 && numeroPuntos >= 0))
 
     if( argc != 4 )
     {    
@@ -44,48 +38,11 @@ double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, al
         {
             alturaConsiderada = fdX(a+i*anchuraSubInterbalo);
             areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
-            areaAcumulada = areaAcumulada + areaSubintervalo;
-            //printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
-            
+            areaAcumulada = areaAcumulada + areaSubintervalo;                 
         }
         printf("AreaAcumulada:%.12lf\n",areaAcumulada);
-        printf("Error Relativo %.16lf/%.16lf = %.16lf\n\n",areaAcumulada,ln4,areaAcumulada/ln4);
-        
-        
-            
+        printf("Error Relativo %.16lf/%.16lf = %.16lf\n\n",areaAcumulada,ln4,areaAcumulada/ln4);       
     }
-    
-    
-    
-        //Captemos argumentos esperamos solamente el numero de puntos
-        /*for(i = 0; i < argc; i++)
-        {
-            printf("%s\n",argv[i]);
-        }*/    
-    
-        //int  numtasks, rank, len, rc;
-        //char hostname[MPI_MAX_PROCESSOR_NAME];
-
-        // initialize MPI  
-        //MPI_Init(&argc,&argv);
-
-        // get number of tasks
-        //MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
-
-        // get my rank  
-        //MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-
-        // this one is obvious  
-        //MPI_Get_processor_name(hostname, &len);
-        //printf ("Number of tasks= %d My rank= %d Running on %s\n", numtasks,rank,hostname);
-
-
-        // do some work with message passing
-
-
-        // done with MPI  
-        //MPI_Finalize();
-
     
     return 0;
 }

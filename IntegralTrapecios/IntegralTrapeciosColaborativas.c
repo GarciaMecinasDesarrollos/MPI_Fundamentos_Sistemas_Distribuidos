@@ -6,6 +6,7 @@
 
 #define ln4 1.38629436112
 
+//Funcion de evaluacion
 double fdX(double x)
 {
     return 1/x;
@@ -91,15 +92,10 @@ int main(int argc, char *argv[])
                 
             alturaConsideradaAnterior = fdX(dominio[0]+i*anchuraSubInterbalo);
             alturaConsideradaPosterior = fdX(dominio[0]+(i+1)*anchuraSubInterbalo);
-            //areaSubintervalo = alturaConsideradaAnterior*anchuraSubInterbalo + ((alturaConsideradaPosterior-alturaConsideradaAnterior)*anchuraSubInterbalo)/2;
+            
             areaSubintervalo = (alturaConsideradaAnterior+alturaConsideradaPosterior)*(0.5)*anchuraSubInterbalo;
             areaAcumulada = areaAcumulada + areaSubintervalo;
-            //printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\n",a+i*anchuraSubInterbalo,alturaConsideradaAnterior,areaSubintervalo, areaAcumulada);
-            /*
-                alturaConsiderada = fdX(dominio[0]+i*anchuraSubInterbalo);
-                areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
-                areaAcumulada = areaAcumulada + areaSubintervalo;
-                */
+           
             }
             printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
             

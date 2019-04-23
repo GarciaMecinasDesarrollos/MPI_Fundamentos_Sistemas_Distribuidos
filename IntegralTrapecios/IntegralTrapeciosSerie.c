@@ -6,8 +6,8 @@
 
 #define ln4 1.38629436112
 
-//[[f(a+((i+1)*h))-f(a+(i*h))]*h]/2
 
+//Funcion de evaluacion
 double fdX(double x)
 {
     return 1/x;
@@ -17,17 +17,10 @@ double fdX(double x)
 
 int main(int argc, char *argv[])
 {
-    
-
-int numeroIntervalos = 0, i = 0;
-double a = 0.0, b = 0.0;
-double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, alturaConsideradaAnterior=0.0, alturaConsideradaPosterior = 0.0;
-
-
-
-
-
-//if(!(numeroPuntos <= 1 && numeroPuntos >= 0))
+ 
+    int numeroIntervalos = 0, i = 0;
+    double a = 0.0, b = 0.0;
+    double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, alturaConsideradaAnterior=0.0, alturaConsideradaPosterior = 0.0;
 
     if( argc != 4 )
     {    
@@ -46,11 +39,9 @@ double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, al
         {
             alturaConsideradaAnterior = fdX(a+i*anchuraSubInterbalo);
             alturaConsideradaPosterior = fdX(a+(i+1)*anchuraSubInterbalo);
-            //areaSubintervalo = alturaConsideradaAnterior*anchuraSubInterbalo + ((alturaConsideradaPosterior-alturaConsideradaAnterior)*anchuraSubInterbalo)/2;
-            areaSubintervalo = (alturaConsideradaAnterior+alturaConsideradaPosterior)*(0.5)*anchuraSubInterbalo;
-            areaAcumulada = areaAcumulada + areaSubintervalo;
-            //printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\n",a+i*anchuraSubInterbalo,alturaConsideradaAnterior,areaSubintervalo, areaAcumulada);
             
+            areaSubintervalo = (alturaConsideradaAnterior+alturaConsideradaPosterior)*(0.5)*anchuraSubInterbalo;
+            areaAcumulada = areaAcumulada + areaSubintervalo;    
         }
         printf("AreaAcumulada:%.12lf\n",areaAcumulada);
         printf("Error Relativo %.16lf/%.16lf = %.16lf\n\n",areaAcumulada,ln4,areaAcumulada/ln4);
@@ -58,38 +49,5 @@ double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, al
         
             
     }
-    
-    
-    
-        //Captemos argumentos esperamos solamente el numero de puntos
-        /*for(i = 0; i < argc; i++)
-        {
-            printf("%s\n",argv[i]);
-        }*/    
-    
-        //int  numtasks, rank, len, rc;
-        //char hostname[MPI_MAX_PROCESSOR_NAME];
-
-        // initialize MPI  
-        //MPI_Init(&argc,&argv);
-
-        // get number of tasks
-        //MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
-
-        // get my rank  
-        //MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-
-        // this one is obvious  
-        //MPI_Get_processor_name(hostname, &len);
-        //printf ("Number of tasks= %d My rank= %d Running on %s\n", numtasks,rank,hostname);
-
-
-        // do some work with message passing
-
-
-        // done with MPI  
-        //MPI_Finalize();
-
-    
     return 0;
 }
