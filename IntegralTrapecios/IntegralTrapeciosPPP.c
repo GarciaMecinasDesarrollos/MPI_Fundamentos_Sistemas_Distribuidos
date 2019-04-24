@@ -136,8 +136,10 @@ int main(int argc, char *argv[])
             
             for(i = 0; i < numeroIntervalos;i++)                
             {
-                alturaConsiderada = fdX(dominio[0]+i*anchuraSubInterbalo);
-                areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
+                alturaConsideradaAnterior = fdX(dominio[0]+i*anchuraSubInterbalo);
+                alturaConsideradaPosterior = fdX(dominio[0]+(i+1)*anchuraSubInterbalo);
+            
+                areaSubintervalo = (alturaConsideradaAnterior+alturaConsideradaPosterior)*(0.5)*anchuraSubInterbalo;
                 areaAcumulada = areaAcumulada + areaSubintervalo;
             }
             printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
