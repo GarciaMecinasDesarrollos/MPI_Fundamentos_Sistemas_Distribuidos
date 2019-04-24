@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
               /* communicator = */ MPI_COMM_WORLD, 
               /* status       = */ MPI_STATUS_IGNORE);
             
-                printf("Semilla[%ld].\t%s:[%d/%d] -> Recivido [%ld] dato.\n",semillas[worldRank],hostname, worldRank, worldSize,numeroPuntos);
+                printf("Semilla[%ld].\t%s:[%d/%d] -> Recibido [%ld] dato.\n",semillas[worldRank],hostname, worldRank, worldSize,numeroPuntos);
             }
             
             //PROBLEMA A RESOLVER

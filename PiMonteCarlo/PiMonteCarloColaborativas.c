@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
             /*      Flujos de retorno con soluciones parciales      */       
             MPI_Bcast(&numeroPuntos, 1, MPI_LONG,0,MPI_COMM_WORLD);
             
-            printf("Semilla[%ld].\t%s:[%d/%d] -> Recivido [%ld] dato.\n",semillas[worldRank],hostname, worldRank, worldSize,numeroPuntos);
+            printf("Semilla[%ld].\t%s:[%d/%d] -> Recibido [%ld] dato.\n",semillas[worldRank],hostname, worldRank, worldSize,numeroPuntos);
             
             //PROBLEMA A RESOLVER
             
