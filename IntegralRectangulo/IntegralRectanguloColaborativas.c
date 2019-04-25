@@ -1,4 +1,4 @@
-/* Solucion con comunicaciones colaborativa para la integración númeria basada en trapecios*/
+/* Solucion con comunicaciones colaborativa para la integración númeria basada en rectangulos*/
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
             //Presentacion Resultados
             if(worldRank == 0)
             {
-                 printf("Integracion Numerica Aproximada por trapecios. [A:%lf,B:%lf] Resultado:%lf\n\n",a,b,globalArea);
+                 printf("Integracion Numerica Aproximada por rectangulos. [A:%lf,B:%lf] Resultado:%lf\n\n",a,b,globalArea);
             }
         
         }
