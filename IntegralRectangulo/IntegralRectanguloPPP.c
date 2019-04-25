@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     long numeroIntervalos = 0;
     int i = 0;
     double a = 0.0, b = 0.0;
-    double anchuraSubInterbalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, alturaConsiderada=0.0;
+    double anchuraSubIntervalo = 0.0, areaSubintervalo = 0.0 , areaAcumulada=0.0, alturaConsiderada=0.0;
     double dominioReparto = 0.0;
     int worldRank;
     int worldSize;
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
                 
                 //El calculamos los puntos por cada proceso
                 //numeroIntervalos = numeroIntervalos/worldSize;
-                anchuraSubInterbalo = (b-a)/(double)numeroIntervalos;
+                anchuraSubIntervalo = (b-a)/(double)numeroIntervalos;
                 //Comienza el reparto de informacion para el mundo. Flujos de reparto
                 for(i=1; i<worldSize;i++)
                 {
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
                     /* communicator = */ MPI_COMM_WORLD);
                     
                     MPI_Send(
-                    /* data         = */ &anchuraSubInterbalo, 
+                    /* data         = */ &anchuraSubIntervalo, 
                     /* count        = */ 1, 
                     /* datatype     = */ MPI_DOUBLE, 
                     /* destination  = */ i, 
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
               /* communicator = */ MPI_COMM_WORLD, 
               /* status       = */ MPI_STATUS_IGNORE);
                 MPI_Recv(
-              /* data         = */ &anchuraSubInterbalo, 
+              /* data         = */ &anchuraSubIntervalo, 
               /* count        = */ 1, 
               /* datatype     = */ MPI_DOUBLE, 
               /* source       = */ 0, 
@@ -129,17 +129,17 @@ int main(int argc, char *argv[])
             dominio[1]=dominio[0]+dominioReparto;
             numeroIntervalos = numeroIntervalos / worldSize;
             
-            printf("[%d]/[%d] --> a: %.16lf, b: %.16lf, subIntervalos: %d, anchuraSubInterbalo: %.16lf\n",worldRank,worldSize,dominio[0],dominio[1],numeroIntervalos,anchuraSubInterbalo);
+            printf("[%d]/[%d] --> a: %.16lf, b: %.16lf, subIntervalos: %d, anchuraSubIntervalo: %.16lf\n",worldRank,worldSize,dominio[0],dominio[1],numeroIntervalos,anchuraSubIntervalo);
             
             //Ejecutamos el problema
             
             for(i = 0; i < numeroIntervalos;i++)
             {
-                alturaConsiderada = fdX(dominio[0]+i*anchuraSubInterbalo);
-                areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
+                alturaConsiderada = fdX(dominio[0]+i*anchuraSubIntervalo);
+                areaSubintervalo = alturaConsiderada*anchuraSubIntervalo;
                 areaAcumulada = areaAcumulada + areaSubintervalo;
             }
-            printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
+            printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubIntervalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
             
             if(worldRank == 0)
             {
