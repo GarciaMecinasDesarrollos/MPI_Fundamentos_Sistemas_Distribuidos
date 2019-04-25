@@ -69,14 +69,14 @@ int main(int argc, char *argv[])
                 
                 //El calculamos los puntos por cada proceso
                 //numeroIntervalos = numeroIntervalos/worldSize;
-                anchuraSubInterbalo = (b-a)/(double)numeroIntervalos;
+                anchuraSubIntervalo = (b-a)/(double)numeroIntervalos;
                 //Comienza el reparto de informacion para el mundo. Flujos de reparto
                 
             }
             
             MPI_Bcast(&numeroIntervalos, 1, MPI_LONG,0,MPI_COMM_WORLD);
             MPI_Bcast(&dominio, 2, MPI_DOUBLE,0,MPI_COMM_WORLD);
-            MPI_Bcast(&anchuraSubInterbalo, 1, MPI_DOUBLE,0,MPI_COMM_WORLD);
+            MPI_Bcast(&anchuraSubIntervalo, 1, MPI_DOUBLE,0,MPI_COMM_WORLD);
             
 //Tenemos en cuenta que dominio contiene el limite inferior del dominio en la posicion 0 y el limite superior del dominio en la posicion 1
             dominioReparto = (dominio[1]-dominio[0])/worldSize;
@@ -84,17 +84,17 @@ int main(int argc, char *argv[])
             dominio[1]=dominio[0]+dominioReparto;
             numeroIntervalos = numeroIntervalos / worldSize;
             
-            printf("[%d]/[%d] --> a: %.16lf, b: %.16lf, subIntervalos: %d, anchuraSubInterbalo: %.16lf\n",worldRank,worldSize,dominio[0],dominio[1],numeroIntervalos,anchuraSubInterbalo);
+            printf("[%d]/[%d] --> a: %.16lf, b: %.16lf, subIntervalos: %d, anchuraSubIntervalo: %.16lf\n",worldRank,worldSize,dominio[0],dominio[1],numeroIntervalos,anchuraSubIntervalo);
             
             //Ejecutamos el problema
             
             for(i = 0; i < numeroIntervalos;i++)                
             {
-                alturaConsiderada = fdX(dominio[0]+i*anchuraSubInterbalo);
-                areaSubintervalo = alturaConsiderada*anchuraSubInterbalo;
+                alturaConsiderada = fdX(dominio[0]+i*anchuraSubIntervalo);
+                areaSubintervalo = alturaConsiderada*anchuraSubIntervalo;
                 areaAcumulada = areaAcumulada + areaSubintervalo;       
             }
-            printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubInterbalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
+            printf("f(%.16lf)=%.16lf\tArearIntervalo:%.12lf\tAreaAcumulada:%.12lf\t\tTask DONE!!\n",a+i*anchuraSubIntervalo,alturaConsiderada,areaSubintervalo, areaAcumulada);
             
             
             
